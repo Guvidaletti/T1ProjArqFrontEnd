@@ -1,0 +1,53 @@
+{
+  "urlBase": "localhost:8080/api/v1",
+  // "/historico/": {
+  //   "method": "GET",
+  // "sendType": {},
+  //   "respType": {}
+  // },
+  "/produtos": {
+    "/": {
+      "method": "GET",
+      "sendType": null,
+      "respType": [
+        {
+          "codigo": "number",
+          "descricao": "string",
+          "preco": "number",
+          "quantidade": "number",
+          "urlImagem": "string",
+          "situacao": "string"
+        }
+      ]
+    },
+    "/autorizacao?codigo=number&quantidade=number": {
+      "method": "GET",
+      // "sendType": {
+      // },
+      "respType": "boolean"
+    }
+  },
+  "/vendas": {
+    "/confirmacao": {
+      "method": "POST",
+      "sendType": {
+        "itens": [{ "codigo": "number", "quantidade": "number" }]
+      },
+      "respType": "boolean"
+    },
+    "/subtotal": {
+      "method": "POST",
+      "sendType": {
+        "endereco": "string",
+        "itens": [{ "codigo": "number", "quantidade": "number" }]
+      },
+      "respType": {
+        "subtotal": "number",
+        "imposto": "number",
+        "frete": "number",
+        "desconto": "number",
+        "total": "number"
+      }
+    }
+  }
+}
