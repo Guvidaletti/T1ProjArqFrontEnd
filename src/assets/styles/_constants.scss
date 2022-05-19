@@ -1,0 +1,27 @@
+:root {
+  // Colors
+  --white: #efefef;
+  --black: #303030;
+  --primary: #284b63;
+  --primary-dark: #153243;
+
+  --secondary: #eef0eb;
+  --secondary-dark: #b4b8ab;
+
+  // Constants
+  --font-family: 'Roboto', sans-serif;
+  --spacing: 8px;
+  --radius: 4px;
+  --shadow: 0 0 10px -3px rgba(0, 0, 0, 0.5);
+
+  // Indexes
+
+  // ABISMO
+
+  // Mixins
+  --flex-centralized: {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
