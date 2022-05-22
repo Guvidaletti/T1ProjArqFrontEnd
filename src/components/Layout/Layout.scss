@@ -1,0 +1,40 @@
+@import './../../assets/styles/constants';
+
+$rootClassName: full-height-container;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column;
+
+  .#{$rootClassName}-row-header {
+    flex: 0 1 auto;
+  }
+  .#{$rootClassName}-row-content {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+    overflow-y: overlay;
+    padding: 0;
+
+    &.vertical-padding {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    &.horizontal-padding {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+  .#{$rootClassName}-row-footer {
+    flex: 0 1 auto;
+  }
+}

@@ -1,0 +1,53 @@
+$rootClassName: componente-produto;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  margin: var(--spacing);
+  max-width: 200px;
+  background-color: var(--white);
+  border-radius: 4px;
+  padding: var(--spacing);
+  box-shadow: var(--shadow);
+
+  img {
+    width: 100%;
+  }
+
+  .#{$rootClassName}-nome {
+    font-weight: 600;
+  }
+  .#{$rootClassName}-preco {
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .#{$rootClassName}-action {
+    button {
+      svg {
+        width: 22px;
+        margin-right: 12px;
+      }
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--dark-blue);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+      cursor: pointer;
+      width: 100%;
+      height: 35px;
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: var(--white);
+      background-color: var(--blue);
+    }
+  }
+}

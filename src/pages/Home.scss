@@ -1,0 +1,14 @@
+$rootClassName: home-page;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  .#{$rootClassName}-produtos {
+    padding: var(--spacing) 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

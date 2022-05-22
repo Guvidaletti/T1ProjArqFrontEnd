@@ -3,10 +3,38 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--secondary);
+  background-color: var(--secondary-light);
   color: var(--black);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  // SCROLLBAR
+  &::-webkit-scrollbar-track {
+    background-color: var(--secondary-light);
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  &::-webkit-scrollbar-thumb {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    background-color: var(--secondary);
+    border-width: 3px;
+    border-style: solid;
+    border-color: var(--secondary-light);
+    &:hover {
+      border-width: 2px;
+      background-color: var(--secondary-dark);
+    }
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
 }

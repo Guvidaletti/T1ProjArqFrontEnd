@@ -1,0 +1,25 @@
+@import url('./../../assets/styles/_constants.scss');
+
+$rootClassName: icon-button;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  -webkit-appearance: none;
+  background-color: var(--transparent);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+}

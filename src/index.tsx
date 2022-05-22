@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import './assets/styles/_default.scss';
+import Layout from './components/Layout/Layout';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import './assets/styles/_default.scss';
+import ShopContextProvider from './contexts/shopContext/ShopContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ShopContextProvider>
+      <Layout />
+    </ShopContextProvider>
   </React.StrictMode>
 );
 
