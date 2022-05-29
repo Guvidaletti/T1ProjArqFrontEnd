@@ -1,0 +1,23 @@
+$rootClassName: dropdown-menu;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .#{$rootClassName}-panel {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(0, 100%);
+    transition: all 0.3s ease;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    padding: var(--spacing);
+    border-radius: 4px;
+  }
+}

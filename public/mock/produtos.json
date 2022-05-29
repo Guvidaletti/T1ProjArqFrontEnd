@@ -1,0 +1,26 @@
+[
+  {
+    "codigo": 1,
+    "descricao": "teste",
+    "preco": 39.4,
+    "quantidade": 5,
+    "situacao": "viva",
+    "urlImagem": "https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg"
+  },
+  {
+    "codigo": 2,
+    "descricao": "teste",
+    "preco": 30,
+    "quantidade": 1,
+    "situacao": "viva",
+    "urlImagem": "https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg"
+  },
+  {
+    "codigo": 3,
+    "descricao": "Terceiro teste gurizada, mais caro hein",
+    "preco": 139.4,
+    "quantidade": 2,
+    "situacao": "viva",
+    "urlImagem": "https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg"
+  }
+]

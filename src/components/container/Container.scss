@@ -1,0 +1,14 @@
+$rootClassName: container-component;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  padding: var(--spacing);
+}

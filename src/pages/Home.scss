@@ -6,9 +6,9 @@ $rootClassName: home-page;
 
 .#{$rootClassName} {
   .#{$rootClassName}-produtos {
-    padding: var(--spacing) 10%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
   }
 }

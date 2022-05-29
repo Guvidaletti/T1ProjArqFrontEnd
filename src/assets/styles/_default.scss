@@ -38,3 +38,47 @@ body {
     display: none;
   }
 }
+
+.sizing-enter {
+  transform: scale(0);
+}
+.sizing-enter-active {
+  transform: scale(1);
+}
+.sizing-enter-done {
+  transform: scale(1);
+}
+.sizing-exit {
+  transform: scale(1);
+}
+.sizing-exit-active {
+  transform: scale(0);
+}
+.sizing-exit-done {
+  transform: scale(0);
+}
+
+.appear-enter {
+  opacity: 0;
+  // transform: scale(0);
+}
+.appear-enter-active {
+  opacity: 1;
+  // transform: scale(1);
+}
+.appear-enter-done {
+  opacity: 1;
+  // transform: scale(1);
+}
+.appear-exit {
+  opacity: 1;
+  // transform: scale(1);
+}
+.appear-exit-active {
+  opacity: 0;
+  // transform: scale(0);
+}
+.appear-exit-done {
+  opacity: 0;
+  // transform: scale(0);
+}

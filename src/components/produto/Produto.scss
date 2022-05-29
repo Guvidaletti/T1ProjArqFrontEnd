@@ -13,15 +13,33 @@ $rootClassName: componente-produto;
   box-shadow: var(--shadow);
 
   img {
-    width: 100%;
+    width: 184px;
+    height: 184px;
+    user-select: none;
+  }
+
+  .#{$rootClassName}-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 184px;
+    height: 184px;
+    background-color: var(--white);
+    color: var(--secondary-dark);
   }
 
   .#{$rootClassName}-nome {
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 4px;
   }
   .#{$rootClassName}-preco {
     font-weight: 400;
     margin-bottom: 8px;
+    opacity: 0.6;
   }
   .#{$rootClassName}-action {
     button {
@@ -37,6 +55,7 @@ $rootClassName: componente-produto;
       &:active {
         transform: scale(0.95);
       }
+      user-select: none;
       cursor: pointer;
       width: 100%;
       height: 35px;
@@ -45,7 +64,7 @@ $rootClassName: componente-produto;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 8px;
+      border-radius: 4px;
       color: var(--white);
       background-color: var(--blue);
     }

@@ -13,6 +13,10 @@ $rootClassName: icon-button;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: ce;
+  justify-content: center;
 
   &:active {
     transform: scale(0.9);
@@ -21,5 +25,21 @@ $rootClassName: icon-button;
   svg {
     width: 25px;
     height: 25px;
+  }
+
+  .#{$rootClassName}-number {
+    transition: all 0.3s ease;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-dark);
+    color: var(--white);
   }
 }

@@ -1,42 +1,81 @@
-import React, { createContext, ReactElement, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
+import api, { toRequest } from '../../services/api';
 import { ProdutoType } from './../../typings/shopTypes';
 
+type ProdutoCarrinhoType = { produto: ProdutoType; quantidade: number };
 export interface ShopContextType {
   produtos: ProdutoType[];
+  carrinho: { [index: number]: ProdutoCarrinhoType };
+  adicionarAoCarrinho: (produto: ProdutoType) => void;
+  removerProdutoDoCarrinho: (codigo: number) => void;
+  loading: boolean;
 }
 
 export const shopContext = createContext<ShopContextType>({
   produtos: [],
+  carrinho: {},
+  adicionarAoCarrinho: () => {},
+  removerProdutoDoCarrinho: () => {},
+  loading: false,
 });
 
 export default function ShopContextProvider({ children }: any): ReactElement {
+  const [carrinho, setCarrinho] = useState<{
+    [index: number]: ProdutoCarrinhoType;
+  }>({});
   const [produtos, setProdutos] = useState<ProdutoType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const adicionarAoCarrinho = useCallback(
+    (produto: ProdutoType) => {
+      const carr = { ...carrinho };
+      let quantidade = carrinho[produto.codigo]!?.quantidade || 0;
+      quantidade++;
+      carr[produto.codigo] = { produto, quantidade };
+      setCarrinho(carr);
+    },
+    [carrinho]
+  );
+
+  const removerProdutoDoCarrinho = useCallback(
+    (codigo: number) => {
+      const carr = { ...carrinho };
+      if (codigo in carr) {
+        delete carr[codigo];
+      }
+      setCarrinho(carr);
+    },
+    [carrinho]
+  );
 
   useEffect(() => {
     // Carrinho
-    setProdutos([
-      {
-        codigo: 1,
-        descricao: 'teste',
-        preco: 39.4,
-        quantidade: 5,
-        situacao: 'viva',
-        urlImagem:
-          'https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg',
-      },
-      {
-        codigo: 2,
-        descricao: 'teste',
-        preco: 39.4,
-        quantidade: 5,
-        situacao: 'viva',
-        urlImagem:
-          'https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg',
-      },
-    ]);
+    toRequest(api.get, ['/produtos'], 'produtos')
+      .then(({ data }) => {
+        setProdutos(data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <shopContext.Provider value={{ produtos }}>{children}</shopContext.Provider>
+    <shopContext.Provider
+      value={{
+        produtos,
+        loading,
+        carrinho,
+        adicionarAoCarrinho,
+        removerProdutoDoCarrinho,
+      }}
+    >
+      {children}
+    </shopContext.Provider>
   );
 }

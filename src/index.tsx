@@ -6,17 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import './assets/styles/_default.scss';
 import ShopContextProvider from './contexts/shopContext/ShopContext';
+import { loadEnvironment } from './services/environment';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <ShopContextProvider>
-      <Layout />
-    </ShopContextProvider>
-  </React.StrictMode>
-);
+
+loadEnvironment().then(() => {
+  root.render(
+    <React.StrictMode>
+      <ShopContextProvider>
+        <Layout />
+      </ShopContextProvider>
+    </React.StrictMode>
+  );
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -21,6 +21,7 @@ $rootClassName: full-height-container;
   .#{$rootClassName}-row-content {
     display: flex;
     flex-flow: column;
+    align-items: center;
     flex: 1 1 auto;
     overflow-y: overlay;
     padding: 0;
