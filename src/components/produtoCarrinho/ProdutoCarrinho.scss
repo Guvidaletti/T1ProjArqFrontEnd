@@ -31,7 +31,7 @@ $rootClassName: produto-carrinho-component;
     }
     button {
       &:disabled {
-        
+        background-color: var(--secondary-dark);
       }
       cursor: pointer;
       font-weight: 600;

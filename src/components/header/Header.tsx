@@ -11,7 +11,8 @@ const { rootClassName } = styles;
 
 export default function Header() {
   const [opened, setOpened] = useState<boolean>(false);
-  const { carrinho } = useContext(shopContext);
+  const { carrinho, adicionarAoCarrinho, removerUnidadeProdutoDoCarrinho } =
+    useContext(shopContext);
   return (
     <header className={rootClassName}>
       <Logo height='40' />
@@ -21,11 +22,28 @@ export default function Header() {
           <div className={`${rootClassName}-panel`}>
             <div>
               {Object.values(carrinho).map((prod) => {
-                return <ProdutoCarrinho key={prod.produto.codigo} {...prod} />;
+                return (
+                  <ProdutoCarrinho
+                    key={prod.produto.codigo}
+                    {...prod}
+                    onAdd={() => {
+                      adicionarAoCarrinho(prod.produto);
+                    }}
+                    onRemove={() => {
+                      removerUnidadeProdutoDoCarrinho(prod.produto.codigo);
+                    }}
+                  />
+                );
               })}
             </div>
             <div className={`${rootClassName}-action`}>
-              <button>Checkout</button>
+              <button
+                onClick={() => {
+                  //TODO: Checkout
+                }}
+              >
+                Checkout
+              </button>
             </div>
           </div>
         }
