@@ -5,7 +5,8 @@ import { shopContext } from '../contexts/shopContext/ShopContext';
 import styles from './Home.scss';
 const { rootClassName } = styles;
 export default function Home() {
-  const { produtos, loading, adicionarAoCarrinho } = useContext(shopContext);
+  const { produtos, loading, carrinho, adicionarAoCarrinho } =
+    useContext(shopContext);
   return (
     <Container>
       <div className={rootClassName}>
@@ -17,8 +18,18 @@ export default function Home() {
                 <Produto
                   {...produto}
                   key={produto.codigo}
+                  disabled={
+                    carrinho[produto.codigo]!?.quantidade >= produto.quantidade
+                  }
                   handleAddToCart={() => {
-                    adicionarAoCarrinho(produto);
+                    if (
+                      carrinho[produto.codigo]!?.quantidade >=
+                      produto.quantidade
+                    ) {
+                      alert('Não foi possível adicionar o item!');
+                    } else {
+                      adicionarAoCarrinho(produto);
+                    }
                   }}
                 />
               );

@@ -55,6 +55,10 @@ $rootClassName: componente-produto;
       &:active {
         transform: scale(0.95);
       }
+      &:disabled {
+        background-color: var(--secondary);
+        pointer-events: none;
+      }
       user-select: none;
       cursor: pointer;
       width: 100%;

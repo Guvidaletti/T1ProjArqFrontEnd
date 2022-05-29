@@ -17,8 +17,20 @@ $rootClassName: header-component;
   color: #f7d032;
 
   .#{$rootClassName}-panel {
+    color: var(--black);
+    min-width: 200px;
+    .vazio {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 8px 0;
+    }
     .#{$rootClassName}-action {
       button {
+        &:disabled {
+          background-color: var(--secondary);
+          pointer-events: none;
+        }
         &:hover {
           background-color: var(--dark-blue);
         }

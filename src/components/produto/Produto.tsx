@@ -6,6 +6,7 @@ const { rootClassName } = styles;
 
 export interface ProdutoProps extends ProdutoType {
   handleAddToCart?: () => void;
+  disabled?: boolean;
 }
 
 export default function Produto(props: ProdutoProps) {
@@ -29,7 +30,7 @@ export default function Produto(props: ProdutoProps) {
         })}
       </div>
       <div className={`${rootClassName}-action`}>
-        <button onClick={props.handleAddToCart}>
+        <button onClick={props.handleAddToCart} disabled={props.disabled}>
           <ShoppingCart />
           Adicionar ao carrinho
         </button>

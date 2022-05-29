@@ -1,5 +1,5 @@
 import { prependOnceListener } from 'process';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import Logo from '../../assets/icons/Logo';
 import ShoppingCart from '../../assets/icons/ShoppingCart';
 import { shopContext } from '../../contexts/shopContext/ShopContext';
@@ -13,6 +13,11 @@ export default function Header() {
   const [opened, setOpened] = useState<boolean>(false);
   const { carrinho, adicionarAoCarrinho, removerUnidadeProdutoDoCarrinho } =
     useContext(shopContext);
+
+  const arrCarrinho = useMemo(() => {
+    return Object.values(carrinho);
+  }, [carrinho]);
+
   return (
     <header className={rootClassName}>
       <Logo height='40' />
@@ -21,23 +26,28 @@ export default function Header() {
         content={
           <div className={`${rootClassName}-panel`}>
             <div>
-              {Object.values(carrinho).map((prod) => {
-                return (
-                  <ProdutoCarrinho
-                    key={prod.produto.codigo}
-                    {...prod}
-                    onAdd={() => {
-                      adicionarAoCarrinho(prod.produto);
-                    }}
-                    onRemove={() => {
-                      removerUnidadeProdutoDoCarrinho(prod.produto.codigo);
-                    }}
-                  />
-                );
-              })}
+              {arrCarrinho.length ? (
+                arrCarrinho.map((prod) => {
+                  return (
+                    <ProdutoCarrinho
+                      key={prod.produto.codigo}
+                      {...prod}
+                      onAdd={() => {
+                        adicionarAoCarrinho(prod.produto);
+                      }}
+                      onRemove={() => {
+                        removerUnidadeProdutoDoCarrinho(prod.produto.codigo);
+                      }}
+                    />
+                  );
+                })
+              ) : (
+                <div className='vazio'>Carrinho vazio</div>
+              )}
             </div>
             <div className={`${rootClassName}-action`}>
               <button
+                disabled={arrCarrinho.length === 0}
                 onClick={() => {
                   //TODO: Checkout
                 }}
