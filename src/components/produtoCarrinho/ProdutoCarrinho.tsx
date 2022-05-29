@@ -19,7 +19,11 @@ export default function ProdutoCarrinho(props: ProdutoCarrinhoProps) {
           +
         </button>
         <span>{props.quantidade}</span>
-        <button onClick={props.onRemove} disabled={props.quantidade === 0}>
+        <button
+          className={props.quantidade === 1 ? 'alert' : ''}
+          onClick={props.onRemove}
+          disabled={props.quantidade === 0}
+        >
           -
         </button>
       </div>

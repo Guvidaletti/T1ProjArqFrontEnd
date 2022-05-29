@@ -30,6 +30,9 @@ $rootClassName: produto-carrinho-component;
       margin: 0 8px;
     }
     button {
+      &.alert {
+        background-color: var(--danger);
+      }
       &:disabled {
         background-color: var(--secondary-dark);
       }
@@ -43,6 +46,7 @@ $rootClassName: produto-carrinho-component;
       border-radius: 100%;
       width: 20px;
       height: 20px;
+      transition: all 0.3s ease;
     }
   }
 }
