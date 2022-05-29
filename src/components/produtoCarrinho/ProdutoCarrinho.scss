@@ -1,0 +1,20 @@
+@import '../../assets/styles/constants';
+
+$rootClassName: produto-carrinho-component;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  width: 100%;
+  min-width: 200px;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--secondary);
+  }
+  padding: var(--spacing);
+
+  .#{$rootClassName}-nome {
+    color: var(--black)
+  }
+}

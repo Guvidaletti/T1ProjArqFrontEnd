@@ -6,9 +6,8 @@ import React, {
   useState,
 } from 'react';
 import api, { toRequest } from '../../services/api';
-import { ProdutoType } from './../../typings/shopTypes';
+import { ProdutoCarrinhoType, ProdutoType } from './../../typings/shopTypes';
 
-type ProdutoCarrinhoType = { produto: ProdutoType; quantidade: number };
 export interface ShopContextType {
   produtos: ProdutoType[];
   carrinho: { [index: number]: ProdutoCarrinhoType };

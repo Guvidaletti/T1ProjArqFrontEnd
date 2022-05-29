@@ -7,6 +7,8 @@ export interface ProdutoType {
   situacao: string;
 }
 
+export type ProdutoCarrinhoType = { produto: ProdutoType; quantidade: number };
+
 export interface ProdutoDTO {
   codigo: number;
   quantidade: number;
