@@ -18,10 +18,15 @@ export default function Header() {
       <DropdowMenu
         opened={opened}
         content={
-          <div>
-            {Object.values(carrinho).map((prod) => {
-              return <ProdutoCarrinho key={prod.produto.codigo} {...prod} />;
-            })}
+          <div className={`${rootClassName}-panel`}>
+            <div>
+              {Object.values(carrinho).map((prod) => {
+                return <ProdutoCarrinho key={prod.produto.codigo} {...prod} />;
+              })}
+            </div>
+            <div className={`${rootClassName}-action`}>
+              <button>Checkout</button>
+            </div>
           </div>
         }
       >

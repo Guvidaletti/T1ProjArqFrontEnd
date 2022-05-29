@@ -15,6 +15,34 @@ $rootClassName: produto-carrinho-component;
   padding: var(--spacing);
 
   .#{$rootClassName}-nome {
-    color: var(--black)
+    color: var(--black);
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .#{$rootClassName}-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 4px;
+    span {
+      font-size: 18px;
+      margin: 0 8px;
+    }
+    button {
+      &:disabled {
+        
+      }
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      background-color: var(--dark-blue);
+      color: var(--white);
+      border: none;
+      outline: none;
+      border-radius: 100%;
+      width: 20px;
+      height: 20px;
+    }
   }
 }

@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import api, { toRequest } from '../../services/api';
+import { getEnvironment } from '../../services/environment';
 import { ProdutoCarrinhoType, ProdutoType } from './../../typings/shopTypes';
 
 export interface ShopContextType {
@@ -54,8 +55,7 @@ export default function ShopContextProvider({ children }: any): ReactElement {
   );
 
   useEffect(() => {
-    // Carrinho
-    toRequest(api.get, ['/produtos'], 'produtos')
+    toRequest(api.get, [`${getEnvironment().api}/produtos`], 'produtos')
       .then(({ data }) => {
         setProdutos(data);
       })
