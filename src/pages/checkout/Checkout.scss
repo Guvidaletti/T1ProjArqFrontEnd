@@ -5,6 +5,91 @@ $rootClassName: checkout-page;
 }
 
 .#{$rootClassName} {
+  min-width: 40%;
   padding: var(--spacing);
-  // background-color: var(--white);
+  background-color: var(--white);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+
+  hr {
+    height: 1px;
+    width: 100%;
+    background-color: var(--secondary);
+    border: none;
+  }
+
+  .#{$rootClassName}-endereco {
+    padding: var(--spacing);
+    span {
+      display: block;
+      font-size: 12px;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    input {
+      width: 100%;
+      outline: none;
+      border: 1px solid var(--secondary-dark);
+      border-radius: 4px;
+      padding: var(--spacing);
+    }
+  }
+
+  .#{$rootClassName}-check {
+    .#{$rootClassName}-valor {
+      padding: var(--spacing);
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+      b {
+      }
+      span {
+        color: var(--black);
+      }
+    }
+  }
+
+  .#{$rootClassName}-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: var(--spacing);
+    button {
+      transition: all 0.3s ease;
+      padding: var(--spacing);
+      border: 2px solid var(--blue);
+      color: var(--white);
+      background-color: var(--blue);
+      border-radius: 4px;
+      cursor: pointer;
+      &:disabled {
+        opacity: 1;
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--gray);
+        pointer-events: none;
+      }
+      &:hover {
+        background-color: var(--dark-blue);
+        border-color: var(--dark-blue);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &:not(:only-child):first-child {
+        margin-right: 8px;
+      }
+      &.secondary {
+        &:hover {
+          background-color: var(--dark-blue);
+          border-color: var(--dark-blue);
+          color: var(--white);
+        }
+        background-color: var(--white);
+        color: var(--blue);
+        border: 2px solid var(--blue);
+      }
+    }
+  }
 }

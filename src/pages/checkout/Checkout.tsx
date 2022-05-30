@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../../components/container/Container';
 import { shopContext } from '../../contexts/shopContext/ShopContext';
@@ -12,7 +12,7 @@ const { rootClassName } = styles;
 export default function Checkout() {
   const { carrinho, limparCarrinho } = useContext(shopContext);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<string | boolean>(false);
   const [endereco, setEndereco] = useState<string>('');
   const [check, setCheck] = useState<CheckoutType | undefined>();
 
@@ -27,11 +27,11 @@ export default function Checkout() {
             placeholder='Digite o Endereço...'
           />
         </div>
-        <div>
+        <div className={`${rootClassName}-action`}>
           <button
-            disabled={!endereco}
+            disabled={!endereco || loading === 'subtotal'}
             onClick={() => {
-              setLoading(true);
+              setLoading('subtotal');
               toRequest<CheckoutType>(
                 api.post,
                 [
@@ -57,37 +57,36 @@ export default function Checkout() {
                 });
             }}
           >
-            {loading ? 'Carregando...' : 'Calcular Subtotal'}
+            {loading === 'subtotal' ? 'Carregando...' : 'Calcular Subtotal'}
           </button>
         </div>
         {check ? (
-          <div>
+          <Fragment>
             <hr />
-            <div>
-              <b>Subtotal</b>
-              <span>{getRealNumber(check.subtotal)}</span>
+            <div className={`${rootClassName}-check`}>
+              <div className={`${rootClassName}-valor`}>
+                <b>Subtotal</b>
+                <span>{getRealNumber(check.subtotal)}</span>
+              </div>
+              <div className={`${rootClassName}-valor`}>
+                <b>Imposto</b>
+                <span>{getRealNumber(check.imposto)}</span>
+              </div>
+              <div className={`${rootClassName}-valor`}>
+                <b>Frete</b>
+                <span>{getRealNumber(check.frete)}</span>
+              </div>
+              <div className={`${rootClassName}-valor`}>
+                <b>Total</b>
+                <span>{getRealNumber(check.total)}</span>
+              </div>
             </div>
-            <hr />
-            <div>
-              <b>Imposto</b>
-              <span>{getRealNumber(check.imposto)}</span>
-            </div>
-            <hr />
-            <div>
-              <b>Frete</b>
-              <span>{getRealNumber(check.frete)}</span>
-            </div>
-            <hr />
-            <div>
-              <b>Total</b>
-              <span>{getRealNumber(check.total)}</span>
-            </div>
-          </div>
+          </Fragment>
         ) : undefined}
-
         <hr />
-        <div>
+        <div className={`${rootClassName}-action`}>
           <button
+            className='secondary'
             onClick={() => {
               limparCarrinho();
               navigate('/');
@@ -95,32 +94,36 @@ export default function Checkout() {
           >
             Cancelar
           </button>
-          <button
-            onClick={() => {
-              toRequest(
-                api.post,
-                [
-                  `${getEnvironment().api}/vendas/confirmacao`,
-                  {
-                    endereco,
-                    itens: Object.values(carrinho).map((i) => {
-                      return {
-                        codigo: i.produto.codigo,
-                        quantidade: i.quantidade,
-                      };
-                    }),
-                  },
-                ],
-                'booleanTrue'
-              ).then(() => {
-                console.log('venda concluída');
-                limparCarrinho();
-                navigate('/');
-              });
-            }}
-          >
-            Confirmar
-          </button>
+          {check ? (
+            <button
+              disabled={loading === 'confirmacao'}
+              onClick={() => {
+                setLoading('confirmacao');
+                toRequest(
+                  api.post,
+                  [
+                    `${getEnvironment().api}/vendas/confirmacao`,
+                    {
+                      endereco,
+                      itens: Object.values(carrinho).map((i) => {
+                        return {
+                          codigo: i.produto.codigo,
+                          quantidade: i.quantidade,
+                        };
+                      }),
+                    },
+                  ],
+                  'booleanTrue'
+                ).then(() => {
+                  console.log('venda concluída');
+                  limparCarrinho();
+                  navigate('/');
+                });
+              }}
+            >
+              {loading === 'confirmacao' ? 'Confirmando..' : 'Confirmar'}
+            </button>
+          ) : undefined}
         </div>
       </div>
     </Container>
