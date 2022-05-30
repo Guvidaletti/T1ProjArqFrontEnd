@@ -19,7 +19,7 @@ export default function Checkout() {
   return (
     <Container>
       <div className={rootClassName}>
-        <div>
+        <div className={`${rootClassName}-endereco`}>
           <span>Endereço:</span>
           <input
             value={endereco}
@@ -38,12 +38,7 @@ export default function Checkout() {
                   `${getEnvironment().api}/vendas/subtotal`,
                   {
                     endereco,
-                    itens: Object.values(carrinho).map((i) => {
-                      return {
-                        codigo: i.produto.codigo,
-                        quantidade: i.quantidade,
-                      };
-                    }),
+                    itens: Object.values(carrinho),
                   },
                 ],
                 'subtotal'

@@ -1,0 +1,10 @@
+$rootClassName: checkout-page;
+
+:export {
+  rootClassName: $rootClassName;
+}
+
+.#{$rootClassName} {
+  padding: var(--spacing);
+  // background-color: var(--white);
+}
