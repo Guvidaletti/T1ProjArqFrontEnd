@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProdutoCarrinhoType } from '../../typings/shopTypes';
+import { getRealNumber } from '../../utils/MoedaUtils';
 import styles from './ProdutoCarrinho.scss';
 const { rootClassName } = styles;
 interface ProdutoCarrinhoProps extends ProdutoCarrinhoType {
@@ -13,10 +14,7 @@ export default function ProdutoCarrinho(props: ProdutoCarrinhoProps) {
       <div className={`${rootClassName}-nome`}>{props.produto.descricao}</div>
       <div className={`${rootClassName}-info`}>
         <div className={`${rootClassName}-preco`}>
-          {props.produto.preco.toLocaleString('pt-br', {
-            style: 'currency',
-            currency: 'BRL',
-          })}
+          {getRealNumber(props.produto.preco)}
         </div>
         <div className={`${rootClassName}-action`}>
           <button

@@ -9,6 +9,14 @@ export interface ProdutoType {
 
 export type ProdutoCarrinhoType = { produto: ProdutoType; quantidade: number };
 
+export interface CheckoutType {
+  subtotal: number;
+  imposto: number;
+  frete: number;
+  desconto: number;
+  total: number;
+}
+
 export interface ProdutoDTO {
   codigo: number;
   quantidade: number;

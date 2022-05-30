@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ShoppingCart from '../../assets/icons/ShoppingCart';
 import { ProdutoType } from '../../typings/shopTypes';
+import { getRealNumber } from '../../utils/MoedaUtils';
 import styles from './Produto.scss';
 const { rootClassName } = styles;
 
@@ -24,10 +25,7 @@ export default function Produto(props: ProdutoProps) {
       />
       <div className={`${rootClassName}-nome`}>{props.descricao}</div>
       <div className={`${rootClassName}-preco`}>
-        {props.preco.toLocaleString('pt-br', {
-          style: 'currency',
-          currency: 'BRL',
-        })}
+        {getRealNumber(props.preco)}
       </div>
       <div className={`${rootClassName}-action`}>
         <button onClick={props.handleAddToCart} disabled={props.disabled}>

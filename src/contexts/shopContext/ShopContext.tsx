@@ -14,6 +14,7 @@ export interface ShopContextType {
   carrinho: { [index: number]: ProdutoCarrinhoType };
   adicionarAoCarrinho: (produto: ProdutoType) => void;
   removerUnidadeProdutoDoCarrinho: (codigo: number) => void;
+  limparCarrinho: () => void;
   loading: boolean;
 }
 
@@ -22,6 +23,7 @@ export const shopContext = createContext<ShopContextType>({
   carrinho: {},
   adicionarAoCarrinho: () => {},
   removerUnidadeProdutoDoCarrinho: () => {},
+  limparCarrinho: () => {},
   loading: false,
 });
 
@@ -58,6 +60,10 @@ export default function ShopContextProvider({ children }: any): ReactElement {
     [carrinho]
   );
 
+  const limparCarrinho = useCallback(() => {
+    setCarrinho({});
+  }, []);
+
   useEffect(() => {
     toRequest(api.get, [`${getEnvironment().api}/produtos`], 'produtos')
       .then(({ data }) => {
@@ -76,6 +82,7 @@ export default function ShopContextProvider({ children }: any): ReactElement {
         carrinho,
         adicionarAoCarrinho,
         removerUnidadeProdutoDoCarrinho,
+        limparCarrinho,
       }}
     >
       {children}
