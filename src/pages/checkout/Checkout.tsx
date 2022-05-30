@@ -10,7 +10,8 @@ import styles from './Checkout.scss';
 const { rootClassName } = styles;
 
 export default function Checkout() {
-  const { carrinho, limparCarrinho } = useContext(shopContext);
+  const { carrinho, limparCarrinho, carregarProdutos } =
+    useContext(shopContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState<string | boolean>(false);
   const [endereco, setEndereco] = useState<string>('');
@@ -77,6 +78,10 @@ export default function Checkout() {
                 <span>{getRealNumber(check.frete)}</span>
               </div>
               <div className={`${rootClassName}-valor`}>
+                <b>Desconto</b>
+                <span>{getRealNumber(check.desconto)}</span>
+              </div>
+              <div className={`${rootClassName}-valor`}>
                 <b>Total</b>
                 <span>{getRealNumber(check.total)}</span>
               </div>
@@ -115,8 +120,9 @@ export default function Checkout() {
                   ],
                   'booleanTrue'
                 ).then(() => {
-                  console.log('venda concluída');
+                  alert('venda concluída');
                   limparCarrinho();
+                  carregarProdutos();
                   navigate('/');
                 });
               }}
