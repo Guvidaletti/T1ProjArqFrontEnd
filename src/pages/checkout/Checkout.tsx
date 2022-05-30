@@ -20,47 +20,54 @@ export default function Checkout() {
   return (
     <Container>
       <div className={rootClassName}>
-        <div className={`${rootClassName}-endereco`}>
-          <span>Endereço:</span>
-          <input
-            value={endereco}
-            onChange={(evt) => setEndereco(evt.target.value)}
-            placeholder='Digite o Endereço...'
-          />
-        </div>
-        <div className={`${rootClassName}-action`}>
-          <button
-            disabled={!endereco || loading === 'subtotal'}
-            onClick={() => {
-              setLoading('subtotal');
-              toRequest<CheckoutType>(
-                api.post,
-                [
-                  `${getEnvironment().api}/vendas/subtotal`,
-                  {
-                    endereco,
-                    itens: Object.values(carrinho).map((i) => {
-                      return {
-                        codigo: i.produto.codigo,
-                        quantidade: i.quantidade,
-                        produto: i.produto,
-                      };
-                    }),
-                  },
-                ],
-                'subtotal'
-              )
-                .then(({ data }) => {
-                  setCheck(data);
-                })
-                .finally(() => {
-                  setLoading(false);
-                });
-            }}
-          >
-            {loading === 'subtotal' ? 'Carregando...' : 'Calcular Subtotal'}
-          </button>
-        </div>
+        <form
+          onSubmit={(evt) => {
+            evt.stopPropagation();
+            evt.preventDefault();
+
+            setLoading('subtotal');
+            toRequest<CheckoutType>(
+              api.post,
+              [
+                `${getEnvironment().api}/vendas/subtotal`,
+                {
+                  endereco,
+                  itens: Object.values(carrinho).map((i) => {
+                    return {
+                      codigo: i.produto.codigo,
+                      quantidade: i.quantidade,
+                      produto: i.produto,
+                    };
+                  }),
+                },
+              ],
+              'subtotal'
+            )
+              .then(({ data }) => {
+                setCheck(data);
+              })
+              .finally(() => {
+                setLoading(false);
+              });
+          }}
+        >
+          <div className={`${rootClassName}-endereco`}>
+            <span>Endereço:</span>
+            <input
+              value={endereco}
+              onChange={(evt) => setEndereco(evt.target.value)}
+              placeholder='Digite o Endereço...'
+            />
+          </div>
+          <div className={`${rootClassName}-action`}>
+            <button
+              type='submit'
+              disabled={!endereco || loading === 'subtotal'}
+            >
+              {loading === 'subtotal' ? 'Carregando...' : 'Calcular Subtotal'}
+            </button>
+          </div>
+        </form>
         {check ? (
           <Fragment>
             <hr />
