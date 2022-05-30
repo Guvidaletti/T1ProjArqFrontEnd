@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from '../../pages/Home';
+import Routes from '../../routes';
 import Header from '../header/Header';
 import styles from './Layout.scss';
 const { rootClassName } = styles;
@@ -11,7 +11,7 @@ export default function Layout() {
         <Header />
       </div>
       <div className={`${rootClassName}-row-content`}>
-        <Home />
+        <Routes />
       </div>
     </div>
   );

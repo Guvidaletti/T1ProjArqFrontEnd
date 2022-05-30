@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import Container from '../components/container/Container';
-import Produto from '../components/produto/Produto';
-import { shopContext } from '../contexts/shopContext/ShopContext';
+import Container from '../../components/container/Container';
+import Produto from '../../components/produto/Produto';
+import { shopContext } from '../../contexts/shopContext/ShopContext';
 import styles from './Home.scss';
 const { rootClassName } = styles;
 export default function Home() {

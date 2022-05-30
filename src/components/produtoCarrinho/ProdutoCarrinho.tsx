@@ -11,21 +11,29 @@ export default function ProdutoCarrinho(props: ProdutoCarrinhoProps) {
   return (
     <div className={rootClassName}>
       <div className={`${rootClassName}-nome`}>{props.produto.descricao}</div>
-      <div className={`${rootClassName}-action`}>
-        <button
-          disabled={props.quantidade >= props.produto.quantidade}
-          onClick={props.onAdd}
-        >
-          +
-        </button>
-        <span>{props.quantidade}</span>
-        <button
-          className={props.quantidade === 1 ? 'alert' : ''}
-          onClick={props.onRemove}
-          disabled={props.quantidade === 0}
-        >
-          -
-        </button>
+      <div className={`${rootClassName}-info`}>
+        <div className={`${rootClassName}-preco`}>
+          {props.produto.preco.toLocaleString('pt-br', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
+        </div>
+        <div className={`${rootClassName}-action`}>
+          <button
+            disabled={props.quantidade >= props.produto.quantidade}
+            onClick={props.onAdd}
+          >
+            +
+          </button>
+          <span>{props.quantidade}</span>
+          <button
+            className={props.quantidade === 1 ? 'alert' : ''}
+            onClick={props.onRemove}
+            disabled={props.quantidade === 0}
+          >
+            -
+          </button>
+        </div>
       </div>
     </div>
   );

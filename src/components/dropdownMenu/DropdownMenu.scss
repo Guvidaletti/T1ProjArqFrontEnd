@@ -5,6 +5,7 @@ $rootClassName: dropdown-menu;
 }
 
 .#{$rootClassName} {
+  z-index: var(--zindex-dropdown);
   position: relative;
   display: flex;
   align-items: center;

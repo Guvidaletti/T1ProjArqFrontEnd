@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import './assets/styles/_default.scss';
 import Layout from './components/Layout/Layout';
-import reportWebVitals from './reportWebVitals';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import './assets/styles/_default.scss';
 import ShopContextProvider from './contexts/shopContext/ShopContext';
+import reportWebVitals from './reportWebVitals';
 import { loadEnvironment } from './services/environment';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,11 +14,11 @@ const root = ReactDOM.createRoot(
 
 loadEnvironment().then(() => {
   root.render(
-    <React.StrictMode>
+    <BrowserRouter>
       <ShopContextProvider>
         <Layout />
       </ShopContextProvider>
-    </React.StrictMode>
+    </BrowserRouter>
   );
 });
 

@@ -1,4 +1,3 @@
-import { prependOnceListener } from 'process';
 import React, { useContext, useMemo, useState } from 'react';
 import Logo from '../../assets/icons/Logo';
 import ShoppingCart from '../../assets/icons/ShoppingCart';
@@ -7,6 +6,7 @@ import DropdowMenu from '../dropdownMenu/DropdownMenu';
 import IconButton from '../iconButton/IconButton';
 import ProdutoCarrinho from '../produtoCarrinho/ProdutoCarrinho';
 import styles from './Header.scss';
+import { useNavigate } from 'react-router-dom';
 const { rootClassName } = styles;
 
 export default function Header() {
@@ -18,6 +18,13 @@ export default function Header() {
     return Object.values(carrinho);
   }, [carrinho]);
 
+  const subtotal = useMemo(() => {
+    return arrCarrinho.reduce((acumulator, atual) => {
+      return acumulator + atual.quantidade * atual.produto.preco;
+    }, 0);
+  }, [arrCarrinho]);
+
+  const navigate = useNavigate();
   return (
     <header className={rootClassName}>
       <Logo height='40' />
@@ -46,10 +53,19 @@ export default function Header() {
               )}
             </div>
             <div className={`${rootClassName}-action`}>
+              {arrCarrinho.length ? (
+                <div className={`${rootClassName}-subtotal`}>
+                  <b>Subtotal: </b>
+                  {subtotal.toLocaleString('pt-br', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })}
+                </div>
+              ) : undefined}
               <button
                 disabled={arrCarrinho.length === 0}
                 onClick={() => {
-                  //TODO: Checkout
+                  navigate('/checkout');
                 }}
               >
                 Checkout

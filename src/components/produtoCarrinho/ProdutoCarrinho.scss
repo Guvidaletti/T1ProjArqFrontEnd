@@ -9,44 +9,58 @@ $rootClassName: produto-carrinho-component;
 .#{$rootClassName} {
   width: 100%;
   min-width: 200px;
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--secondary);
-  }
+  border-bottom: 1px solid var(--secondary);
   padding: var(--spacing);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   .#{$rootClassName}-nome {
+    width: 100%;
     color: var(--black);
     font-weight: 600;
     white-space: nowrap;
     text-overflow: ellipsis;
+    margin-bottom: 4px;
   }
-  .#{$rootClassName}-action {
+  .#{$rootClassName}-info {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-top: 4px;
-    span {
-      font-size: 18px;
-      margin: 0 8px;
+    justify-content: space-between;
+    width: 100%;
+
+    .#{$rootClassName}-preco {
+      padding-right: 8px;
     }
-    button {
-      &.alert {
-        background-color: var(--danger);
+    .#{$rootClassName}-action {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      span {
+        font-size: 18px;
+        margin: 0 8px;
       }
-      &:disabled {
-        background-color: var(--secondary-dark);
+      button {
+        &.alert {
+          background-color: var(--danger);
+        }
+        &:disabled {
+          background-color: var(--secondary-dark);
+        }
+        padding: 0;
+        line-height: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        background-color: var(--dark-blue);
+        color: var(--white);
+        border: none;
+        outline: none;
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        transition: all 0.3s ease;
       }
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      background-color: var(--dark-blue);
-      color: var(--white);
-      border: none;
-      outline: none;
-      border-radius: 100%;
-      width: 20px;
-      height: 20px;
-      transition: all 0.3s ease;
     }
   }
 }
