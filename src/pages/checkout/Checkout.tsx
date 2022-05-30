@@ -100,7 +100,7 @@ export default function Checkout() {
               toRequest(
                 api.post,
                 [
-                  `${getEnvironment()}/vendas/confirmacao`,
+                  `${getEnvironment().api}/vendas/confirmacao`,
                   {
                     endereco,
                     itens: Object.values(carrinho).map((i) => {
