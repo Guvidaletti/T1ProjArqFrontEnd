@@ -79,7 +79,7 @@ export default function Checkout() {
             <hr />
             <div>
               <b>Total</b>
-              <span>{getRealNumber(check.frete)}</span>
+              <span>{getRealNumber(check.total)}</span>
             </div>
           </div>
         ) : undefined}
