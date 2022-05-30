@@ -108,15 +108,15 @@ export default function Checkout() {
                   api.post,
                   [
                     `${getEnvironment().api}/vendas/confirmacao`,
-                    {
-                      endereco,
-                      itens: Object.values(carrinho).map((i) => {
-                        return {
-                          codigo: i.produto.codigo,
-                          quantidade: i.quantidade,
-                        };
-                      }),
-                    },
+                    Object.values(carrinho).map((i) => {
+                      return {
+                        codigo: i.produto.codigo,
+                        quantidade: i.quantidade,
+                        imposto: check.imposto,
+                        custo: i.produto.preco,
+                        produto: i.produto,
+                      };
+                    }),
                   ],
                   'booleanTrue'
                 ).then(() => {
