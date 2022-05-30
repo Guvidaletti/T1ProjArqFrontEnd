@@ -38,7 +38,13 @@ export default function Checkout() {
                   `${getEnvironment().api}/vendas/subtotal`,
                   {
                     endereco,
-                    itens: Object.values(carrinho),
+                    itens: Object.values(carrinho).map((i) => {
+                      return {
+                        codigo: i.produto.codigo,
+                        quantidade: i.quantidade,
+                        produgo: i.produto,
+                      };
+                    }),
                   },
                 ],
                 'subtotal'
