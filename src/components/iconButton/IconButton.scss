@@ -22,9 +22,11 @@ $rootClassName: icon-button;
     transform: scale(0.9);
   }
 
-  svg {
-    width: 25px;
-    height: 25px;
+  &:not(.ignore-size) {
+    svg {
+      width: 25px;
+      height: 25px;
+    }
   }
 
   .#{$rootClassName}-number {

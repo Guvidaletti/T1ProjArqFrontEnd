@@ -7,6 +7,8 @@ import IconButton from '../iconButton/IconButton';
 import ProdutoCarrinho from '../produtoCarrinho/ProdutoCarrinho';
 import styles from './Header.scss';
 import { useNavigate } from 'react-router-dom';
+import api, { toRequest } from '../../services/api';
+import { getEnvironment } from '../../services/environment';
 const { rootClassName } = styles;
 
 export default function Header() {
@@ -27,7 +29,11 @@ export default function Header() {
   const navigate = useNavigate();
   return (
     <header className={rootClassName}>
-      <Logo height='40' />
+      <IconButton
+        icon={<Logo height='40' />}
+        onClick={() => navigate('/')}
+        ignoreSize
+      />
       <DropdowMenu
         opened={opened}
         content={
@@ -65,7 +71,15 @@ export default function Header() {
               <button
                 disabled={arrCarrinho.length === 0}
                 onClick={() => {
-                  navigate('/checkout');
+                  toRequest(
+                    api.post,
+                    [`${getEnvironment().api}/vendas/subtotal`],
+                    'subtotal'
+                  ).then(({ data }) => {
+                    console.log(data);
+                    navigate('/checkout');
+                    setOpened(false);
+                  });
                 }}
               >
                 Checkout

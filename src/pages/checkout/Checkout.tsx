@@ -6,7 +6,12 @@ const { rootClassName } = styles;
 export default function Checkout() {
   return (
     <Container>
-      <div className={rootClassName}>Checkout</div>
+      <div className={rootClassName}>
+        <div>
+          
+        </div>
+
+      </div>
     </Container>
   );
 }

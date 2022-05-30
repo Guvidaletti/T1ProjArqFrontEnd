@@ -1,25 +1,33 @@
 [
   {
     "codigo": 1,
-    "descricao": "teste",
-    "preco": 39.4,
+    "descricao": "Fogão 4 Bocas Esmaltec Bali Branco ",
+    "preco": 359.99,
     "quantidade": 5,
     "situacao": "viva",
-    "urlImagem": "https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg"
+    "urlImagem": "https://shoppmaia.com/product_images/f/628/64021__01675_std__40633_std.jpg"
   },
   {
     "codigo": 2,
-    "descricao": "teste",
-    "preco": 30,
+    "descricao": "Geladeira Brastemp Frost Free 375 Litros - BRM45HK",
+    "preco": 3999.99,
     "quantidade": 1,
     "situacao": "viva",
-    "urlImagem": "https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg"
+    "urlImagem": "https://compracerta.vtexassets.com/arquivos/ids/587091-1200-1200?v=637709484452400000&width=1200&height=1200&aspect=true"
   },
   {
     "codigo": 3,
-    "descricao": "Terceiro teste gurizada, mais caro hein",
-    "preco": 139.4,
+    "descricao": "Microondas Philco 32L - PMO33E",
+    "preco": 499.99,
     "quantidade": 2,
+    "situacao": "viva",
+    "urlImagem": "https://distribuidorajbm.com/product_images/x/269/pmo33es_01__27134_std__64945_zoom.jpg"
+  },
+  {
+    "codigo": 4,
+    "descricao": "Camiseta preta - Sem marca",
+    "preco": 29.99,
+    "quantidade": 8,
     "situacao": "viva",
     "urlImagem": "https://img.elo7.com.br/product/original/36F76BB/camiseta-masculina-basica-nelville-streetwear-algodao-100.jpg"
   }
