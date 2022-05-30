@@ -42,7 +42,7 @@ export default function Checkout() {
                       return {
                         codigo: i.produto.codigo,
                         quantidade: i.quantidade,
-                        produgo: i.produto,
+                        produto: i.produto,
                       };
                     }),
                   },
